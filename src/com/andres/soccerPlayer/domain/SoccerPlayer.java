@@ -21,8 +21,12 @@ public class SoccerPlayer {
     public byte shootingSpeed;
     public byte dorsal;
     public int timePlayed;
+    public int passes;
+    public int quitedBall;
+    public double distanceTraveled;
 
-    public void passing(){
+    public void passing(int amount){
+        this.passes += amount;
     }
 
     public void scoring(int amount){
@@ -30,16 +34,16 @@ public class SoccerPlayer {
     }
 
     public void shooting(){
-        this.shoot ++;https://github.com/andrescardo98/poo.git
+        this.shoot ++;
 
     }
 
-    public void quiting(){
-
+    public void quiting(int amount){
+        this.quitedBall += amount;
     }
 
-    public void running(){
-
+    public void running(double distance){
+        this.distanceTraveled += distance;
     }
 
     public boolean training(){
@@ -47,6 +51,6 @@ public class SoccerPlayer {
     }
 
     public String getScoredGoals(){
-        return "Today " + this.name + " " + this.lastName + " scored " + this.scoredGoals + " goals in " + this.timePlayed + " minutes.";
+        return this.name + " " + this.lastName + " statistics:" + "\nGoals scored: " + this.scoredGoals + " goals. \nPasses made: " + this.passes + " passes. " + "\nDistance traveled: " + this.distanceTraveled + "km." + "\nPlayed time: " + this.timePlayed + " minutes.";
     }
 }

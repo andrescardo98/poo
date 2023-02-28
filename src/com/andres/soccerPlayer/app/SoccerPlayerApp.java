@@ -10,6 +10,8 @@ public class SoccerPlayerApp {
         player.timePlayed = 88;
 
         player.scoring(3);
+        player.passing(27);
+        player.running(5.40);
 
         System.out.println(player.getScoredGoals());
     }
