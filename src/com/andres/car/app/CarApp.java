@@ -11,7 +11,7 @@ public class CarApp {
         Car pedrosCar = new Car();
         pedrosCar.owner = pedro;
         pedrosCar.licensePlate = "JPY334";
-        pedrosCar.brand = "BMW";
+        pedrosCar.brand = "Mazda";
         pedrosCar.reference = "220i";
 
         pedrosCar.starting();
