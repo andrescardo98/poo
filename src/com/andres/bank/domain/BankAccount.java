@@ -5,8 +5,21 @@ public class BankAccount {
     public int balance;
     public String type;
     public Person holder;
-    public Bank banco;
+    public Bank bank;
     public boolean isActive;
+
+    public BankAccount(int number, int balance, String type, Person holder, Bank banco) {
+        this(number, type, holder);
+        this.balance = balance;
+        this.bank = banco;
+    }
+
+    public BankAccount(int number, String type, Person holder) {
+        this.number = number;
+        this.type = type;
+        this.holder = holder;
+        this.isActive = true;
+    }
 
     public boolean deposit(double moneyToDeposit){
         if (this.isActive == true){

@@ -5,21 +5,16 @@ import com.andres.bank.domain.Person;
 
 public class BankApp {
     public static void main(String[] args) {
-        Person diana = new Person();
-        diana.id = 357;
-        diana.name = "Diana";
+        Person diana = new Person(357, "Diana Monsalve");
+        Person alvaro = new Person("Alvaro Restrepo");
+        new Person(1233, "Andrés Cardona");
 
-        Person alvaro = new Person();
-        alvaro.id = 149;
-        alvaro.name = "Alvaro";
+        //posición en memoria de la tercera persona
+        System.out.println(new Person(1233, "Andrés Cardona"));
 
-        BankAccount dianaAccount = new BankAccount();
-        dianaAccount.holder = diana;
-        dianaAccount.isActive = true;
+        BankAccount dianaAccount = new BankAccount(123,"A", diana);
 
-        BankAccount alvaroAccount = new BankAccount();
-        alvaroAccount.holder = alvaro;
-        alvaroAccount.isActive = true;
+        BankAccount alvaroAccount = new BankAccount(321,"A", alvaro);
 
         dianaAccount.deposit(50);
 
