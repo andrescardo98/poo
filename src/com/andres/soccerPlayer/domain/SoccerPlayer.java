@@ -25,6 +25,19 @@ public class SoccerPlayer {
     public int quitedBall;
     public double distanceTraveled;
 
+    public SoccerPlayer(String name, String lastName, byte age, String nationality, String team, String position) {
+        this(name, lastName, team);
+        this.age = age;
+        this.nationality = nationality;
+        this.position = position;
+    }
+
+    public SoccerPlayer(String name, String lastName, String team) {
+        this.name = name;
+        this.lastName = lastName;
+        this.team = team;
+    }
+
     public void passing(int amount){
         this.passes += amount;
     }
@@ -50,7 +63,11 @@ public class SoccerPlayer {
         return true;
     }
 
+    public void countingTime(int time){
+        this.timePlayed += time;
+    }
+
     public String getScoredGoals(){
-        return this.name + " " + this.lastName + " statistics:" + "\nGoals scored: " + this.scoredGoals + " goals. \nPasses made: " + this.passes + " passes. " + "\nDistance traveled: " + this.distanceTraveled + "km." + "\nPlayed time: " + this.timePlayed + " minutes.";
+        return this.name + " " + this.lastName + " statistics:" + "\nGoals scored: " + this.scoredGoals + " goals. \nPasses made: " + this.passes + " passes. " + "\nDistance traveled: " + this.distanceTraveled + "km." + "\nTime played: " + this.timePlayed + " minutes." + "\nQuited balls: "+ this.quitedBall+".\n";
     }
 }

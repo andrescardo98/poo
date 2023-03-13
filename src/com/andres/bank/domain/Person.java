@@ -7,7 +7,8 @@ public class Person {
     //Los constructores por buena práctica deben ir después de los atributos.
 
 
-    public Person(String name) {
+    public Person(String name)
+    {
         this.name = name;
     }
 
