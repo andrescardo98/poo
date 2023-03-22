@@ -18,12 +18,12 @@ public class BankApp {
 
         dianaAccount.deposit(50);
 
-        System.out.println(dianaAccount.getBalance());
-        System.out.println(alvaroAccount.getBalance());
+        System.out.println(dianaAccount.getMessageBalance());
+        System.out.println(alvaroAccount.getMessageBalance());
 
         dianaAccount.transfer(alvaroAccount, 20);
 
-        System.out.println(dianaAccount.getBalance());
-        System.out.println(alvaroAccount.getBalance());
+        System.out.println(dianaAccount.getMessageBalance());
+        System.out.println(alvaroAccount.getMessageBalance());
     }
 }

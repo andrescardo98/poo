@@ -1,12 +1,12 @@
 package com.andres.bank.domain;
 
 public class BankAccount {
-    public int number;
-    public int balance;
-    public String type;
-    public Person holder;
-    public Bank bank;
-    public boolean isActive;
+    private int number;
+    private int balance;
+    private String type;
+    private Person holder;
+    private Bank bank;
+    private boolean isActive;
 
     public BankAccount(int number, int balance, String type, Person holder, Bank banco) {
         this(number, type, holder);
@@ -56,8 +56,35 @@ public class BankAccount {
         return false;
     }
 
-    public String getBalance(){
+    public String getMessageBalance(){
+        return this.holder.getName() + ", your balance is $" + this.balance;
+    }
 
-        return this.holder.name + ", your balance is $" + this.balance;
+    public double getBalance(){
+        return balance;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Person getHolder() {
+        return holder;
+    }
+
+    public Bank getBank() {
+        return bank;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }
