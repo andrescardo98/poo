@@ -1,17 +1,16 @@
 package com.andres.bicycle.domain;
 
 public class Bicycle {
-    public long serial; // +serial: long
-    public String brand;
-    public String color;
-    public double speed;
-    public byte currentChange = 1; //utilizo byte porque es más pequeño, lo cual permite tener mejor optimizada la memoria
-    public byte maxChange = 7;
+    private long serial; // +serial: long
+    private String brand;
+    private String color;
+    private double speed;
+    private byte currentChange = 1; //utilizo byte porque es más pequeño, lo cual permite tener mejor optimizada la memoria
+    private byte maxChange = 7;
 
     //accelerating(in amount:int)
     public void accelerating(int amount){
         this.speed += amount;
-
     }
 
     //braking(in amount:int)
@@ -19,7 +18,6 @@ public class Bicycle {
         if (this.speed - amount < 0){
             System.out.println("The bicycle is stopped. Bicycle can´t break.");
         }
-
         this.speed -= amount;
     }
 
@@ -47,5 +45,33 @@ public class Bicycle {
 
     public String getCurrentSpeed(){
         return "The current speed is: " + this.speed + "km/h & the current change is: " + this.currentChange;
+    }
+
+    public long getSerial() {
+        return serial;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public byte getCurrentChange() {
+        return currentChange;
+    }
+
+    public byte getMaxChange() {
+        return maxChange;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
