@@ -56,7 +56,7 @@ public class Snack {
     }
 
     public void setCurrentUnits(int currentUnits) {
-        if (currentUnits >= 1 && currentUnits <= MAX_UNITS_ALLOWED){
+        if (currentUnits >= 0 && currentUnits <= MAX_UNITS_ALLOWED){
             this.currentUnits = currentUnits;
         }
         else {

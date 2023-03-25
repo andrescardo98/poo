@@ -17,7 +17,7 @@ public class SnackVendingMachine {
     }
 
     // Add a snack to the vending machine
-    public void createSnack(String snackName, int snackCode, double snackValue, int currentUnits){
+    public void createSnack(int snackCode, String snackName, double snackValue, int currentUnits){
         if(!verifyIfTheCodeSnackExists(snackCode)){
            Snack snack = new Snack(snackCode,snackName,snackValue,currentUnits);
            this.addSnackToMachine(snack);
@@ -39,19 +39,18 @@ public class SnackVendingMachine {
     }
 
     private Snack findSnackByCode(int snackCode){
+        return this.snacks.stream()
+                .filter(snack -> snack.getCode() == snackCode)
+                .findFirst().orElse(null);
+
 //        Snack snackToReturnByCode = null;
 //        for (Snack snack : this.snacks){
 //            if (snack.getCode() == snackCode){
 //                snackToReturnByCode = snack;
-//                //this.snacks.remove(snackToReturnByCode);
 //                return snackToReturnByCode;
 //            }
 //        }
 //        return snackToReturnByCode;
-
-        return this.snacks.stream()
-                .filter(snack -> snack.getCode() == snackCode)
-                .findFirst().orElse(null);
     }
 
     private boolean verifyIfTheNameSnackExists(String nameSnack){
@@ -64,31 +63,26 @@ public class SnackVendingMachine {
                 .findFirst().orElse(null);
     }
 
-    // Remove one unit of a given snack given its code
-    public Snack takeOutSnackByCode(int snackCode){
-        Snack snackCodeExists = this.findSnackByCode(snackCode);
-        Snack snackToReturnByCode = null;
-        for (Snack snack : this.snacks){
-            if (snack.getCode() == snackCode){
-                snackToReturnByCode = snack;
-                this.snacks.remove(snackToReturnByCode);
-                return snackToReturnByCode;
-            }
+    // Take out one unit of a given snack given its code
+    public void takeOutSnackByCode(int snackCode){
+        Snack snackToTakeOutByCode = this.findSnackByCode(snackCode);
+        if (snackToTakeOutByCode.getCurrentUnits() > 0){
+            snackToTakeOutByCode.setCurrentUnits(snackToTakeOutByCode.getCurrentUnits()-1);
+            System.out.println("You took out 1 unit of " + snackToTakeOutByCode.getName());
+        }else {
+            System.out.println("There's not snack " + snackToTakeOutByCode.getName() + " in this moment");
         }
-        return snackToReturnByCode;
     }
 
     // Remove one unit of a given snack given its name
-    public Snack takeOutSnackByName(String snackName){
-        Snack snackToReturnByName = null;
-        for (Snack snack : this.snacks){
-            if (snack.getName().equals(snackName)){
-                snackToReturnByName = snack;
-                this.snacks.remove(snackToReturnByName);
-                return snackToReturnByName;
-            }
+    public void takeOutSnackByName(String snackName) {
+        Snack snackToTakeOutByName = this.findSnackByName(snackName);
+        if (snackToTakeOutByName.getCurrentUnits() > 1) {
+            snackToTakeOutByName.setCurrentUnits(snackToTakeOutByName.getCurrentUnits() - 1);
+            System.out.println("You took out 1 unit of " + snackToTakeOutByName.getName());
+        } else {
+            System.out.println("There's not snack " + snackToTakeOutByName.getName() + " in this moment");
         }
-        return snackToReturnByName;
     }
 
     // Increase units of a given snack given its code
@@ -99,7 +93,7 @@ public class SnackVendingMachine {
 
     // Increase units of a given snack given its name
     public void increaseUnitsOfSnackByName(String snackName, int unitToIncrease){
-        Snack snackToIncreaseByName = this.takeOutSnackByName(snackName);
+        Snack snackToIncreaseByName = this.findSnackByName(snackName);
         snackToIncreaseByName.setCurrentUnits(snackToIncreaseByName.getCurrentUnits() + unitToIncrease);
     }
 
@@ -115,12 +109,13 @@ public class SnackVendingMachine {
     }
 
     // Get the number of units remaining of a given snack.
-    public int getUnitsOfGivenSnack(int snackCode){
+    public void getUnitsOfGivenSnack(int snackCode){
         Snack snackToSearch = this.findSnackByCode(snackCode);
         if (snackToSearch != null){
-            return snackToSearch.getCurrentUnits();
+            System.out.println("Current units of " + snackToSearch.getName() + ": " + snackToSearch.getCurrentUnits());
+        } else {
+            System.out.println("There's not units of snack " + snackCode);
         }
-        return 0;
 
 //        return this.snacks.stream()
 //                .filter(snack -> snack.getCode() == snackCode)
@@ -129,20 +124,21 @@ public class SnackVendingMachine {
     }
 
     // Get names of snacks which are out of stock
-    public List<Snack> getNameOfSnackOutOfStock(){
-        return this.snacks.stream()
+    public void getNameOfSnackOutOfStock(){
+        System.out.println("______________________________________________");
+        System.out.println("At the moment these are the snacks which are out of stock (Current units = 0)");
+        this.showSnacks(this.snacks.stream()
                 .filter(snack -> snack.getCurrentUnits() == 0)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
+        System.out.println("______________________________________________");
     }
 
     // Get the name and number of units remaining of all snacks in the dispenser.
-    public List<Snack> getNameAndUnitsOfSnacksInMachine(){
-        List<Snack> inventory = new ArrayList<>();
-        for (Snack snack : snacks){
-            Snack snacks = new Snack(snack.getCode() + ". " + snack.getName() + ": " + snack.getCurrentUnits());
-            inventory.add(snacks);
-        }
-        return inventory;
+    public void getNameAndUnitsOfSnacksInMachine(){
+        System.out.println("______________________________________________");
+        System.out.println("These are the current snacks which are in the vending machine ");
+        this.showSnacks(this.getSnacks());
+        System.out.println("______________________________________________");
     }
 
     public void getSnacksOrderedByValue(){
@@ -153,6 +149,16 @@ public class SnackVendingMachine {
         this.snacks.sort(Comparator.comparing(Snack::getCurrentUnits));
     }
 
+    private void showSnacks(List<Snack> snacks){
+        for (Snack snack : snacks){
+            showInfoSnack(snack);
+        }
+    }
+
+    private void showInfoSnack(Snack snack){
+        System.out.println("Code Snack: " + snack.getCode() + ") Snack: " + snack.getName()
+                + ". Price: " + snack.getValue() + ". Current units: " + snack.getCurrentUnits());
+    }
 
     public String getName() {
         return name;
