@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ElectronicPhoneBook {
-    public static final byte AMOUNT = 50;
+    public static final byte MAX_CONTACTS_ALLOWED = 50;
     private String name;
     private List<Contact> contacts;
 
@@ -19,7 +19,7 @@ public class ElectronicPhoneBook {
         Contact lastNameAdd = this.searchByLastName(lastName);
         Contact nameAdd = this.searchByName(name);
 
-        if (numberToAdd != null && lastNameAdd != null && nameAdd != null && this.contacts.size() < AMOUNT){
+        if (numberToAdd != null && lastNameAdd != null && nameAdd != null && this.contacts.size() < MAX_CONTACTS_ALLOWED){
             Contact contactToAdd = new Contact(name, lastName, phoneNumber);
             this.contacts.add(contactToAdd);
             return true;
@@ -27,8 +27,8 @@ public class ElectronicPhoneBook {
         return false;
     }
 
-    public void deleteContact(long phoneNumber){
-        Contact contact = this.searchByPhoneNumber(phoneNumber);
+    public void deleteContact(String nameNumber){
+        Contact contact = this.searchByName(nameNumber);
 
         if (contact != null){
             this.contacts.remove(contact);
@@ -50,43 +50,41 @@ public class ElectronicPhoneBook {
     }
 
     public Contact searchByPhoneNumber(long phoneNumber){
-        return this.contacts.stream()
-                .filter(contact -> contact.getPhoneNumber() == phoneNumber).
-                findFirst().orElse(null);
-        }
+//        return this.contacts.stream()
+//                .filter(contact -> contact.getPhoneNumber() == phoneNumber).
+//                findFirst().orElse(null);
 
-//        Contact contactToReturn = null;
-//
-//        for (Contact contact : this.contacts){
-//            if (contact.getPhoneNumber() == phoneNumber){
-//                contactToReturn = contact;
-//                break;
-//            }
-//        }
-//        return contactToReturn;
+        Contact contactToReturn = null;
+
+        for (Contact contact : this.contacts){
+            if (contact.getPhoneNumber() == phoneNumber){
+                contactToReturn = contact;
+                System.out.println(contactToReturn.getName());
+                break;
+            }
+        }
+        return contactToReturn;
+        }
 //    }
 
     public void changePhoneNumber(String name, long phoneNumber){
-        this.contacts.stream()
-                .filter(contact -> contact.getName().equals(name))
-                .findFirst().orElse(null)
-                .setPhoneNumber(phoneNumber);
+//        this.contacts.stream()
+//                .filter(contact -> contact.getName().equals(name))
+//                .findFirst().orElse(null)
+//                .setPhoneNumber(phoneNumber);
 
-        //Contact contact = this.searchByName(name);
+        Contact contact = this.searchByName(name);
 
-        //if (contact != null){
-        //    contact.setPhoneNumber(phoneNumber);
-        //} else {
-        //    System.out.println("Contact wasn't found.");
-        //}
+        if (contact != null){
+            contact.setPhoneNumber(phoneNumber);
+        } else {
+            System.out.println("Contact wasn't found.");
+        }
     }
 
-    public void orderContactByName(){
-        this.contacts.sort(Comparator.comparing(Contact::getName));
-    }
-
-    public void orderContactByLastName(){
-        this.contacts.sort(Comparator.comparing(Contact::getLastName));
+    public void orderContactByNameAndLastName(){
+        this.contacts.sort(Comparator.comparing(Contact::getName).thenComparing(Contact::getLastName));
+        System.out.println(contacts);
     }
 
     public String getName() {
@@ -98,10 +96,18 @@ public class ElectronicPhoneBook {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (!name.equals("")){
+            this.name = name;
+        } else {
+            System.out.println("Please enter a name");
+        }
     }
 
     public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
+        if (this.contacts.size() < MAX_CONTACTS_ALLOWED){
+            this.contacts = contacts;
+        } else {
+            System.out.println("The amount of contacts must not be higher than 50");
+        }
     }
 }

@@ -6,13 +6,13 @@ public class Contact {
     private long phoneNumber;
 
     public Contact(String name, String lastName, long phoneNumber) {
-        this.name = name;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
+        setName(name);
+        setLastName(lastName);
+        setPhoneNumber(phoneNumber);
     }
 
     public Contact(long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        setPhoneNumber(phoneNumber);
     }
 
     public String getName() {
@@ -28,14 +28,26 @@ public class Contact {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (!name.equals(" ")){
+            this.name = name;
+        } else {
+            System.out.println("Please enter a name");
+        }
     }
 
     public void setLastName(String lastName) {
-        this.lastName = lastName;
+        if (!lastName.equals(" ")){
+            this.lastName = lastName;
+        } else {
+            System.out.println("Please enter a last name");
+        }
     }
 
     public void setPhoneNumber(long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        if (phoneNumber > 0){
+            this.phoneNumber = phoneNumber;
+        } else {
+            System.out.println("Phone number must be greater than zero");
+        }
     }
 }
