@@ -8,7 +8,8 @@ import java.util.Objects;
 public class Guayabita {
     public static final String NAME = "GUAVA GAME";
     public static final ImageIcon ICON = new ImageIcon(Objects.requireNonNull(GuavaApp.class.getResource("guayaba.png")));
-    private static final int MINUMUM_DIFFERENCE_OF_MONEY_VS_INITIALBET = 200;
+    public static final int MINIMUM_PLAYER_MONEY = 1000;
+    private static final int MINIMUM_DIFFERENCE_OF_MONEY_VS_INITIAL_BET = 200;
     private static final int MINIMUM_INITIAL_BET = 500;
     private int pot;
     private Player player1;
@@ -115,15 +116,15 @@ public class Guayabita {
             try {
                 initialBet = Integer.parseInt(JOptionPane.showInputDialog(null, "How much money do you want to bet?",
                         NAME, JOptionPane.QUESTION_MESSAGE, ICON, null, null).toString().trim());
-                if (initialBet > (this.player1.getPlayerMoney() - MINUMUM_DIFFERENCE_OF_MONEY_VS_INITIALBET)) {
+                if (initialBet > (this.player1.getPlayerMoney() - MINIMUM_DIFFERENCE_OF_MONEY_VS_INITIAL_BET)) {
                     JOptionPane.showMessageDialog(null, this.player1.getName() + " doesn't have enough money" +
                                     " for the initial bet.\nYour current money is $" + this.player1.getPlayerMoney() + " and you should " +
-                                    "save at least $" + MINUMUM_DIFFERENCE_OF_MONEY_VS_INITIALBET + " for betting in the second roll.",
+                                    "save at least $" + MINIMUM_DIFFERENCE_OF_MONEY_VS_INITIAL_BET + " for betting in the second roll.",
                             NAME, JOptionPane.ERROR_MESSAGE);
-                } else if (initialBet > (this.player2.getPlayerMoney() - MINUMUM_DIFFERENCE_OF_MONEY_VS_INITIALBET)) {
+                } else if (initialBet > (this.player2.getPlayerMoney() - MINIMUM_DIFFERENCE_OF_MONEY_VS_INITIAL_BET)) {
                     JOptionPane.showMessageDialog(null, this.player2.getName() + " doesn't have enough money" +
                                     " for the initial bet.\nYour current money is $" + this.player2.getPlayerMoney() + " and you should " +
-                                    "save at least $" + MINUMUM_DIFFERENCE_OF_MONEY_VS_INITIALBET + " for betting in the second roll.",
+                                    "save at least $" + MINIMUM_DIFFERENCE_OF_MONEY_VS_INITIAL_BET + " for betting in the second roll.",
                             NAME, JOptionPane.ERROR_MESSAGE);
                 } else if (initialBet < MINIMUM_INITIAL_BET) {
                     JOptionPane.showMessageDialog(null, "The initial bet must be greater or equal to $" + MINIMUM_INITIAL_BET);
@@ -167,12 +168,12 @@ public class Guayabita {
         }
     }
 
-    //Die second validation -> if previos die value is less than die is gotten in second roll, player win the bet.
+    //Die second validation -> if previous die value is less than die is gotten in second roll, player win the bet.
     public void secondRollValidation(Player player, Die die) {
         short previousDieValue = this.die.getNumberDie();
         int betValue = continueBetting(player);
         die.rollOfDie();
-        JOptionPane.showConfirmDialog(null, player.getName() + ", this is your die.",NAME+" - Die " + die.getNumberDie(),
+        JOptionPane.showConfirmDialog(null, player.getName()+", this is your die.",NAME+" - Die " +die.getNumberDie(),
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, die.getDieFace());
         if (previousDieValue < die.getNumberDie()) {
             player.winBet(betValue);
