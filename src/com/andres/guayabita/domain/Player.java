@@ -5,14 +5,13 @@ import javax.swing.*;
 public class Player {
     private String name;
     private int playerMoney = 0;
-    private int totalPlayers = 2;
 
     public Player(int numPlayer) {
         this.enterPlayerName(numPlayer);
         this.enterPlayerMoney();
     }
 
-    //name
+    //Player enter his/her name
     public void enterPlayerName(int numPlayer){
         boolean cantContinue = true;
             do {
@@ -24,7 +23,7 @@ public class Player {
             } while (cantContinue);
     }
 
-    //pot
+    //Player enter his/her total money
     public int enterPlayerMoney(){
         boolean cantContinue = true;
         do{
@@ -32,20 +31,22 @@ public class Player {
                 playerMoney = Integer.parseInt((String) JOptionPane.showInputDialog(null,this.name+", enter the money"
                         , Guayabita.NAME,JOptionPane.QUESTION_MESSAGE,Guayabita.ICON,
                         null,null).toString().trim());
-                if (playerMoney < 1000){
-                    JOptionPane.showMessageDialog(null,"The minimum amount is $1000\nPlease try again");
+                if (playerMoney < Guayabita.MINIMUM_PLAYER_MONEY){
+                    JOptionPane.showMessageDialog(null,"The minimum amount is " + Guayabita.MINIMUM_PLAYER_MONEY +
+                            "\nPlease try again");
                 } else {
                     cantContinue = false;
                 }
             }catch (Exception e){
-                JOptionPane.showMessageDialog(null,"Please enter a valid amount, it should be greater or equal to $1000");
+                JOptionPane.showMessageDialog(null,"Please enter a valid amount, it should be greater or equal to " +
+                        Guayabita.MINIMUM_PLAYER_MONEY);
             }
         }while (cantContinue);
         return playerMoney;
     }
 
     public void bet(int betValue){
-        this.playerMoney-= betValue;
+        this.playerMoney -= betValue;
     }
 
     public void winBet(int betValue){
