@@ -158,6 +158,7 @@ public class Guayabita {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, die.getDieFace());
     }
 
+    //Die first validation -> If die = 1 or 6, returns message from default option, else return message with yes no option
     public int firstRollValidation(String name, Die die) {
         if (die.getNumberDie() == 1 || die.getNumberDie() == 6) {
             return showMessageDefaultOption(name, die);
@@ -166,6 +167,7 @@ public class Guayabita {
         }
     }
 
+    //Die second validation -> if previos die value is less than die is gotten in second roll, player win the bet.
     public void secondRollValidation(Player player, Die die) {
         short previousDieValue = this.die.getNumberDie();
         int betValue = continueBetting(player);
