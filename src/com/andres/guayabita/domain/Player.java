@@ -24,7 +24,7 @@ public class Player {
     }
 
     //Player enter his/her total money
-    public int enterPlayerMoney(){
+    public void enterPlayerMoney(){
         boolean cantContinue = true;
         do{
             try {
@@ -42,8 +42,8 @@ public class Player {
                         Guayabita.MINIMUM_PLAYER_MONEY);
             }
         }while (cantContinue);
-        return playerMoney;
     }
+
 
     public void bet(int betValue){
         this.playerMoney -= betValue;
@@ -52,13 +52,6 @@ public class Player {
     public void winBet(int betValue){
         this.playerMoney += (betValue*2);
     }
-
-    public void showMoneyPlayer(int numPlayer){
-        JOptionPane.showMessageDialog(null, name + " money is: " + this.playerMoney, Guayabita.NAME,
-                JOptionPane.INFORMATION_MESSAGE, Guayabita.ICON);
-    }
-
-
 
 
 
