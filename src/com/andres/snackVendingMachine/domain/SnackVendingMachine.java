@@ -53,7 +53,7 @@ public class SnackVendingMachine {
 //        return snackToReturnByCode;
     }
 
-    private boolean verifyIfTheNameSnackExists(String nameSnack){
+    private boolean verifyIfTheSnackNameExists(String nameSnack){
         return findSnackByName(nameSnack) != null;
     }
 
