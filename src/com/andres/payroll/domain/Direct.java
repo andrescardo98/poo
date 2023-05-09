@@ -27,7 +27,10 @@ public class Direct extends Employee{
 
     @Override
     public String toString() {
-        System.out.println("DirectEmployee");
         return super.toString();
+    }
+
+    public long getSalary() {
+        return salary;
     }
 }

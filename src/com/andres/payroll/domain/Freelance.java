@@ -17,7 +17,14 @@ public class Freelance extends Employee{
 
     @Override
     public String toString() {
-        System.out.println("Freelance");
         return super.toString();
+    }
+
+    public long getHourValue() {
+        return hourValue;
+    }
+
+    public int getWorkedHours() {
+        return workedHours;
     }
 }

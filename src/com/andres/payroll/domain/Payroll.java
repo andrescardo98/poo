@@ -12,9 +12,12 @@ public class Payroll {
 
     public void calculatePayroll(){
         int totalPayroll = 0;
+        System.out.println("________________________________");
+        System.out.println("Payroll System");
         for (Employee employee : this.employees){
             totalPayroll += employee.calculateSalary();
-            System.out.println("Payroll -> " + totalPayroll);
+            System.out.println(employee.toString());
+            System.out.println("Payroll -> " + totalPayroll + "\n");
         }
     }
 
@@ -24,23 +27,31 @@ public class Payroll {
         for (Employee employee : this.employees){
             if (employee instanceof Seller){
                 Seller sellerEmployee = (Seller) employee;
-                System.out.println("Name: " + sellerEmployee.getName() + " | Salary: " + sellerEmployee.calculateSalary() +
-                        " | Contribution: " + sellerEmployee.calculateContribution() + " | Commission: " + sellerEmployee.calculateCommission());
+                System.out.println(sellerEmployee.toString());
             }
             else if (employee instanceof Direct){
                 Direct directEmployee = (Direct) employee;
-                System.out.println("Name: " + directEmployee.getName() + " | Salary: " + directEmployee.calculateSalary() +
-                        " | Contribution: " + directEmployee.calculateContribution());
+                System.out.println(directEmployee.toString());
             }
         }
     }
 
-    public void listFreelancersEmployees(){
+    public void listFreelancers(){
         System.out.println("________________________________");
         System.out.println("Freelance employees list: ");
         for (Employee employee : this.employees){
             if (employee instanceof Freelance){
-                System.out.println("Name: " + employee.getName() + " | Salary: " + employee.calculateSalary());
+                System.out.println(employee.toString());
+            }
+        }
+    }
+
+    public void listPromoters(){
+        System.out.println("________________________________");
+        System.out.println("Promoters employees list: ");
+        for (Employee employee : this.employees){
+            if (employee instanceof Promoter){
+                System.out.println(employee.toString());
             }
         }
     }

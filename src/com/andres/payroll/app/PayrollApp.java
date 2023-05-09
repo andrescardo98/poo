@@ -28,10 +28,14 @@ public class PayrollApp {
         Employee gustavo = new Freelance("Gustavo",42_500,65);
         employees.add(gustavo);
 
+        Employee pedro = new Promoter("Pedro",1200,280,62);
+        employees.add(pedro);
+
         payroll.setEmployees(employees);
 
         payroll.calculatePayroll();
         payroll.listDirectEmployees();
-        payroll.listFreelancersEmployees();
+        payroll.listFreelancers();
+        payroll.listPromoters();
     }
 }

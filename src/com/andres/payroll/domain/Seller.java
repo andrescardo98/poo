@@ -22,4 +22,13 @@ public class Seller extends Direct{
     protected long calculateSalary() {
         return super.calculateSalary() + calculateCommission();
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + " | Commission: " + this.calculateCommission();
+    }
+
+    public long getSalesMonth() {
+        return salesMonth;
+    }
 }
