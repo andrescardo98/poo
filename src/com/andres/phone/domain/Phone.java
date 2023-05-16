@@ -6,6 +6,13 @@ public abstract class Phone implements Activable{
     private long number;
     private String brand;
     private int capacity;
+    private Person owner;
+
+    public Phone(String imei, String brand, Person owner) {
+        this.imei = imei;
+        this.brand = brand;
+        this.owner = owner;
+    }
 
     @Override
     public void turnOn() {

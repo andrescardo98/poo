@@ -1,16 +1,15 @@
 package com.andres.phone.domain;
 
-public class BasicPhone extends Phone implements CodeValidable, PatternValidable{
+public class BasicPhone extends Phone implements Validation {
     private int code;
-    private String pattern;
 
-    @Override
-    public boolean validateCode(int code) {
-        return this.code == code;
+    public BasicPhone(String imei, String brand, Person owner) {
+        super(imei, brand, owner);
+        this.code = owner.getCode();
     }
 
     @Override
-    public boolean validatePattern(String pattern) {
-        return this.pattern.equals(pattern);
+    public boolean validate(Person person) {
+        return code == person.getCode();
     }
 }
