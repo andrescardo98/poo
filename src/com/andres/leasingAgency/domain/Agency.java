@@ -17,7 +17,7 @@ public class Agency {
         this.properties = new ArrayList<>();
     }
 
-    //CREAR EXCEPCION QUE VALIDE SI LA PROPIEDAD YA EXISTE ✅
+    //CRETE EXCEPTION THAT VALIDATES IF THE PROPERTY EXISTS ✅
     public void addProperty(Property property){
         this.validate(property);
         this.properties.add(property);
@@ -37,7 +37,7 @@ public class Agency {
         return false;
     }
 
-    //CREAR EXCEPCION QUE INDIQUE SI UN INMUEBLE A DEVOLVER NO ESTÁ ALQUILADO ✅
+    //CREATE EXCEPTION THAT INDICATES IF THE PROPERTY TO BE RETURNED IS NOT RENTED✅
     public boolean returnProperty(Property property){
         Property propertyExists = this.findProperty(property.getAddress());
         this.validateLeasedProperty(property);
@@ -51,7 +51,7 @@ public class Agency {
         return false;
     }
 
-    //CREAR EXCEPCION PARA CUANDO SE INTENTE VENDER UNA PROPIEDAD ALQUILADA ✅
+    //CREATE EXCEPTION FOR WHEN TRY TO SELL A RENTED PROPERTY ✅
     public boolean sellProperty(Property property){
         this.validateLeasedPropertyForSell(property);
         for (Property property1 : this.properties){
