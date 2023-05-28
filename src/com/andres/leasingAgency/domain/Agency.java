@@ -17,13 +17,13 @@ public class Agency {
         this.properties = new ArrayList<>();
     }
 
-    //CRETE EXCEPTION THAT VALIDATES IF THE PROPERTY EXISTS ✅
+    //CREATE EXCEPTION THAT VALIDATES IF THE PROPERTY EXISTS ✅
     public void addProperty(Property property){
         this.validate(property);
         this.properties.add(property);
     }
 
-    //CRETE EXCEPTION THAT VALIDATES IF THE PROPERTY IS LEASABLE, FOR EXAMPLE A LOT IS NOT LEASABLE ✅
+    //CREATE EXCEPTION THAT VALIDATES IF THE PROPERTY IS LEASABLE, FOR EXAMPLE A LOT IS NOT LEASABLE ✅
     public boolean leaseProperty(Property property){
         Property propertyExists = this.findProperty(property.getAddress());
         this.validateLeasableProperty(property);

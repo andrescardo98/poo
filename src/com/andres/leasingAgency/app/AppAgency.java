@@ -32,7 +32,7 @@ public class AppAgency {
 //            agency.sellProperty(property4);
 //            agency.leaseProperty(property5);
             agency.getAvailableLeasable();
-            agency.sellProperty(property3);
+            agency.sellProperty(property4);
             agency.getAvailableLeasable();
 //            agency.leaseProperty(property4);
             agency.getLeased();
