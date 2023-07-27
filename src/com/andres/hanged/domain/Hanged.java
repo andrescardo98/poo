@@ -68,11 +68,13 @@ public class Hanged {
                 if (attempts >= MAX_ATTEMPTS){
                     finishedGame = true;
                     System.out.println("You have reached the limit of attempts. The secret word was: " + secretWord);
-                } else if (String.valueOf(secretWordHyphens).equals(secretWord)) {
-                    finishedGame = true;
-                    System.out.println("Congratulations, you have won! You guessed the secret word: " + secretWord);
                 }
+            } else if (String.valueOf(secretWordHyphens).equals(secretWord)) {
+                    finishedGame = true;
             }
         }while (!finishedGame);
+        if (String.valueOf(secretWordHyphens).equals(secretWord)){
+            System.out.println("Congratulations, you have won! You guessed the secret word: " + secretWord);
+        }
     }
 }
